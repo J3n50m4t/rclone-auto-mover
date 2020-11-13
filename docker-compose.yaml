@@ -1,0 +1,13 @@
+version: '3'
+services:
+  rclone-auto-mover:
+    network_mode: "bridge"
+    restart: unless-stopped
+    volumes:
+     - ./data/:/data
+     - ./config/:/config
+     - ./logs:/var/rclonemove/logs
+    environment: 
+      - bwlimit=4M
+    container_name: rclone-auto-mover
+    image: rclone-auto-mover:latest
